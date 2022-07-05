@@ -1,0 +1,226 @@
+<div class="row">
+  <!-- [ dark-table ] end -->
+  <!-- [ striped-table ] start -->
+      <app-ui-modal #myLargeModalLabel [hideFooter]="true" [dialogClass]="'modal-lg'">
+        <div class="app-modal-header">
+          <h5 class="modal-title">Ajout Modele</h5>
+          <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close" (click)="myLargeModalLabel.hide()"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="app-modal-body">
+          <div class="app-modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <form (ngSubmit)="saveModele()">
+                  <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" class="form-control" name="nom" placeholder="Creer Nom" [(ngModel)]="nom">
+                  </div>
+                  <div class="form-group">
+                    <label for="prix">Prix</label>
+                    <input type="number" class="form-control" name="prix" placeholder="Ajout Prix" [(ngModel)]="prix">
+                  </div>
+                  <div class="form-group">
+                    <label for="imageUrl">Image Url</label>
+                    <input type="text" class="form-control" name="imageUrl" placeholder="Url d'image" [(ngModel)]="imageUrl">
+                  </div>
+                  <div class="form-group">
+                    <label for="garantie">Garantie</label>
+                    <input type="number" class="form-control" name="garantie" placeholder="Ajout Garantie" [(ngModel)]="garantie">
+                  </div>
+                  <div class="form-group">
+                    <label for="nbreDePlaces">Nombre de places</label>
+                    <input type="number" class="form-control" name="nbreDePlaces" placeholder="Ajout nombre de places" [(ngModel)]="nbreDePlaces">
+                  </div>
+                  <div class="form-group">
+                    <label for="nbreDeCylindres">Nombre de places</label>
+                    <input type="number" class="form-control" name="nbreDeCylindres" placeholder="Ajout nombre de cylindres" [(ngModel)]="nbreDeCylindres">
+                  </div>
+                  <div class="form-group">
+                    <label for="puissanceFiscale">Puissance Fiscale</label>
+                    <input type="number" class="form-control" name="puissanceFiscale" placeholder="Ajout Puissance Fiscale" [(ngModel)]="puissanceFiscale">
+                  </div>
+                  <div class="form-group">
+                    <label for="nbreDeRapports">Nombre de rapports</label>
+                    <input type="number" class="form-control" name="nbreDeRapports" placeholder="Ajout nombre de rapports" [(ngModel)]="nbreDeRapports">
+                  </div>
+                  <div class="form-group">
+                    <label for="boite">Type de Boite</label>
+                    <select [(ngModel)]="boite" name="boite" class="custom-select" required>
+                      <option *ngFor="let c of BoiteType" [ngValue]="c.name">{{c.name}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="energie">Type d'Energie</label>
+                    <select [(ngModel)]="energie" name="energie" class="custom-select" required>
+                      <option *ngFor="let c of EnergieType" [ngValue]="c.name">{{c.name}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="carrosserie">Type de Carrosserie</label>
+                    <select [(ngModel)]="carrosserie" name="carrosserie" class="custom-select" required>
+                      <option *ngFor="let c of CarrosserieType" [ngValue]="c.name">{{c.name}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="transmission">Type de Transmission</label>
+                    <select [(ngModel)]="transmission"  name="transmission" class="custom-select" required>
+                      <option *ngFor="let c of TransmissionType" [ngValue]="c.name">{{c.name}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="marque">Marque</label>
+                    <select [(ngModel)]="marque" name="carrosserie" class="custom-select" required>
+                      <option *ngFor="let c of marqueList" [ngValue]="c">{{c.nom}}</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary float-right ml-2" (click)="myLargeModalLabel.hide()">Submit</button>
+                </form>
+              </div>
+              
+            </div>
+      
+      
+          </div>
+        </div>
+      </app-ui-modal>
+      <app-ui-modal #myLargeModalLabel1 [hideFooter]="true" [dialogClass]="'modal-lg'">
+        <div class="app-modal-header">
+          <h5 class="modal-title">Modifier Modele</h5>
+          <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close" (click)="myLargeModalLabel1.hide()"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="app-modal-body">
+          <div class="app-modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <form (ngSubmit)="updateModele()">
+                  <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" class="form-control" name="nom" placeholder="Creer Nom" [(ngModel)]="nom" ngModel="{{modeleUpdated?.nom}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="prix">Prix</label>
+                    <input type="number" class="form-control" name="prix" placeholder="Ajout Prix" [(ngModel)]="prix" ngModel="{{modeleUpdated?.prix}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="imageUrl">Image Url</label>
+                    <input type="text" class="form-control" name="imageUrl" placeholder="Url d'image" [(ngModel)]="imageUrl" ngModel="{{modeleUpdated?.imageUrl}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="garantie">Garantie</label>
+                    <input type="number" class="form-control" name="garantie" placeholder="Ajout Garantie" [(ngModel)]="garantie" ngModel="{{modeleUpdated?.garantie}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="nbreDePlaces">Nombre de places</label>
+                    <input type="number" class="form-control" name="nbreDePlaces" placeholder="Ajout nombre de places" [(ngModel)]="nbreDePlaces" ngModel="{{modeleUpdated?.nbreDePlaces}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="nbreDeCylindres">Nombre de places</label>
+                    <input type="number" class="form-control" name="nbreDeCylindres" placeholder="Ajout nombre de cylindres" [(ngModel)]="nbreDeCylindres" ngModel="{{modeleUpdated?.nbreDeCylindres}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="puissanceFiscale">Puissance Fiscale</label>
+                    <input type="number" class="form-control" name="puissanceFiscale" placeholder="Ajout Puissance Fiscale" [(ngModel)]="puissanceFiscale" ngModel="{{modeleUpdated?.puissanceFiscale}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="nbreDeRapports">Nombre de rapports</label>
+                    <input type="number" class="form-control" name="nbreDeRapports" placeholder="Ajout nombre de rapports" [(ngModel)]="nbreDeRapports" ngModel="{{modeleUpdated?.nbreDeRapports}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="boite">Type de Boite</label>
+                    <select [(ngModel)]="boite" name="boite" class="custom-select" required>
+                      <option *ngFor="let c of BoiteType" [ngValue]="c.name">{{c.name}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="energie">Type d'Energie</label>
+                    <select [(ngModel)]="energie" name="energie" class="custom-select" required>
+                      <option *ngFor="let c of EnergieType" [ngValue]="c.name">{{c.name}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="carrosserie">Type de Carrosserie</label>
+                    <select [(ngModel)]="carrosserie" name="carrosserie" class="custom-select" required>
+                      <option *ngFor="let c of CarrosserieType" [ngValue]="c.name">{{c.name}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="transmission">Type de Transmission</label>
+                    <select [(ngModel)]="transmission"  name="transmission" class="custom-select" required>
+                      <option *ngFor="let c of TransmissionType" [ngValue]="c.name">{{c.name}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="marque">Marque</label>
+                    <select [(ngModel)]="marque" name="carrosserie" class="custom-select" required>
+                      <option *ngFor="let c of marqueList" [ngValue]="c">{{c.nom}}</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary" (click)="myLargeModalLabel.hide()">Submit</button>
+                </form>
+              </div>
+              
+            </div>
+      
+      
+          </div>
+        </div>
+      </app-ui-modal>  
+  <div class="col-xl-12">
+    <app-card customHeader="true" cardTitle="Striped Table" blockClass="table-border-style">
+      <div class="app-card-header">
+        <div class="row d-flex justify-content-end">
+          <button type="button" class="btn btn-primary" data-toggle="modal" (click)="myLargeModalLabel.show()" style="margin-right: 2%;">+</button>
+        </div>
+        <input type="search" (ngModelChange)="searchMarque(key.value)" #key="ngModel" ngModel
+        placeholder="Search" class="form-control" name="key" id="searchName" />  
+
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Carrosserie</th>
+            <th>garantie</th>
+            <th>Places</th>
+            <th>Cylindres</th>
+            <th>Energie</th>
+            <th>Puissance Fiscale</th>
+            <th>Boite</th>
+            <th>Rapports</th>
+            <th>Transmission</th>
+            <th>Marque</th>
+            <th>Action</th>
+            
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let el of modeleList">
+            <td>{{el.id}}</td>
+            <td>{{el.nom}}</td>
+            <td>{{el.prix}}</td>
+            <td>{{el.carrosserie}}</td>
+            <td>{{el.garantie}}</td>
+            <td>{{el.nbreDePlaces}}</td>
+            <td>{{el.nbreDeCylindres}}</td>
+            <td>{{el.puissanceFiscale}}</td>
+            <td>{{el.energie}}</td>
+            <td>{{el.boite}}</td>
+            <td>{{el.nbreDeRapports}}</td>
+            <td>{{el.transmission}}</td>
+            <td>{{el.marque.nom}}</td>
+            <td><div class="input-group-append">
+              <button class="btn btn-secondary" type="button" (click)="deleteModele(el.id)">Delete</button>
+              <button class="btn btn-primary" type="button" (click)="doEdit(el);myLargeModalLabel1.show()">Edit</button>
+            </div></td>
+            
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </app-card>
+  </div>
+  <!-- [ striped-table ] end -->
+</div>

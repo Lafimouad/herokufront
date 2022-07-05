@@ -1,0 +1,167 @@
+
+<div class="content">
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <app-card [hidHeader]="true" cardClass="text-center">
+         <div class="row justify-content-end" >
+          <div class="col-8 justify-content-end">
+            <h4 class="card-title txt-color">Liste des Documents </h4>
+            <!-- <p class="card-text">Vous trouvez ci-dessous les documents envoyés</p> -->
+          </div>
+          <div class="col-4">
+            <div class="text-center">
+              <button class="btn btn-primary " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" (click)="myLargeModalLabel1.show()"
+                aria-controls="offcanvasRight">Générer le contrat</button>
+            </div>
+          </div>
+         </div>
+          
+          <table class="table  container-fluid">
+            <tbody>
+        
+              <tr  *ngFor="let document of listDocument">
+                <td>
+                  <button *ngIf="document.status" type="button" class="btn btn-icon btn-success"><i class="feather icon-check-circle"></i></button>
+                  <button *ngIf="!document.status" type="button" class="btn btn-icon btn-danger"><i class="feather icon-x"></i></button>
+        
+                </td>
+                <td><div class="justify-content-center" style="padding-top: 3%;">
+                  {{document.nom }} </div></td>
+                <td>
+                  <button type="button" [disabled]="!document.status" class="btn btn-primary" data-bs-toggle="modal" (click)="getImageData( document.url ,document.nom , document.nomDoc );myLargeModalLabel.show()">
+                    inspecter
+                  </button>
+                </td>
+              </tr>
+        
+            </tbody>
+          </table>
+          <hr><i class="now-ui-icons loader_refresh spin"></i> Dernier mis à jour {{ dateUpdateDoc?.date}}
+        
+        </app-card>
+      </div>
+
+      <div *ngIf="!displayTitle">
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+          <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+          </symbol>
+          <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path
+              d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+          </symbol>
+        </svg>
+
+        <div class="alert alert-primary d-flex-row " role="alert">
+          <div class="d-flex justify-content-center">
+            <svg class="bi flex-shrink-0 me-2 " width="24" height="24" role="img" aria-label="Info:">
+              <use xlink:href="#info-fill" />
+            </svg>
+            <h3 class="alert-heading me-2 mb-2">Pas de documents pour l'instant !</h3>
+          </div>
+
+          <p class="text-center">Le client n'a pas encore envoyé les documents nécessaires </p>
+          <hr>
+          <p class="mb-0 text-center">Essayer de consulter les docuemnt ultérieurement </p>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <!-- *ngIf="!(contButtonDisplay == 'false')" -->
+
+
+
+  </div>
+</div>
+
+<!-- Modal inspecter Start -->
+<app-ui-modal #myLargeModalLabel [hideFooter]="false" [dialogClass]="'modal-lg'">
+  <div class="app-modal-header">
+    <h5 class="modal-title">{{ titleDocument }}</h5>
+    <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close" (click)="myLargeModalLabel.hide()"><span aria-hidden="true">&times;</span></button>
+  </div>
+    <div class="app-modal-body detailView pb-2">
+      <img src="{{ imageUrl }}" class="card-img modal-lg" alt="image" height="800" *ngIf="!testModalTypeFile()">
+    </div>
+    <div class="app-modal-footer">
+      <a class="btn flot-end color-th color" href="{{ imageUrl }}">Telechager</a>
+    </div>
+</app-ui-modal>
+<!-- {{ listDocument | json }} -->
+
+<!-- Modal inspecter End -->
+
+
+
+
+<!-- Modal Contrat Start-->
+<app-ui-modal #myLargeModalLabel1 [hideFooter]="true" [dialogClass]="'modal-lg'">
+  <div class="app-modal-header">
+    <h5 class="modal-title">Contrat de crédit</h5>
+    <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close" (click)="myLargeModalLabel1.hide()"><span aria-hidden="true">&times;</span></button>
+  </div>
+    <div class="app-modal-body">
+
+      <div id="contrat" class="container-fluid">
+        <div class="text-center bold h2 mb-2">Convention de crédit</div>
+        <div class="text-center h3">AGENCE DE LA BANQUE .....</div>
+  
+        <br>
+        <br>
+  
+        <p>&nbsp;&nbsp;&nbsp;Il est convenu d'un accord entre Madame/Mosieur {{
+          noteCreditAccepter[0]?.demandeCredit?.client.nom }} {{
+          noteCreditAccepter[0]?.demandeCredit?.client.prenom  }} à
+          l'adresse Djerba Empreuntant une somme de {{ noteCreditAccepter[0]?.demandeCredit?.montant }}DT auprès de la
+          banque BIAT</p>
+  
+        <br>
+        <p>&nbsp;&nbsp;&nbsp;L'emprunteur s'engage à rembourser integralement le crédit de
+          {{ noteCreditAccepter[0]?.demandeCredit?.montant }} Dinar Tunisien plus un intéret pendant une durée de {{ noteCreditAccepter[0]?.demandeCredit?.dureeRemboursement
+          }}Mois.Compte tenu de la
+          confiance que la banque a placé en leur client un premier remboursement
+          devra etre effectué ../../.... pour une somme de {{ noteCreditAccepter[0]?.demandeCredit?.montant }}DT
+          Madame/Mosieur devient client définitif de la banque une fois que les
+          "simulation" DT seront prélevés de son compte bancaire
+        </p>
+  
+        <br>
+        <div class="d-flex justify-content-between mb-2">
+          <div class="h2">Cacher</div>
+          <div class="h2">Signature Client</div>
+        </div>
+  
+        <!-- {{ noteCreditAccepter[0]?.demandeCredit.client.nom }}
+          {{ noteCreditAccepter[0]?.demandeCredit.client.prenom }}
+          {{ noteCreditAccepter[0]?.demandeCredit.montant }}
+          {{ noteCreditAccepter[0]?.demandeCredit.dureeRemboursement }}
+          {{ noteCreditAccepter[0]?.demandeCredit.simulation }} -->
+        <br>
+        <br>
+        <br>
+  
+      </div>
+      <div class="d-flex justify-content-between mb-3">
+        <button class="btn color-th" (click)="savecontratPdf()" >Telecharger</button>
+        <!-- <button class="btn color-th" hidden="false">Signer Contrat</button> -->
+        <button class="btn color-th-send" [disabled]="buttonDisplay" [hidden]="buttonDisplay"  (click)="saveContrat()" >Envoyer</button>
+        <!-- <button class="btn btn-primary" type="button" [disabled]=false>Button</button> -->
+  
+  
+        <!-- (click)="saveContrat()" -->
+      </div>
+  
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+      <a class="btn flot-end color-th color" href="{{ imageUrl }}">Telechager</a>
+    </div>
+</app-ui-modal>
+
+<!-- Modal Contrat End -->

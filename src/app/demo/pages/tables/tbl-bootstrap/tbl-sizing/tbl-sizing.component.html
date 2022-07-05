@@ -1,0 +1,104 @@
+<div class="row">
+  <!-- Extra Large table start -->
+  <!-- Default table end-->
+  <!-- Small table start-->
+   
+  <!-- Small table start-->
+  <!-- Extra small table start-->
+  <app-ui-modal #myLargeModalLabel [hideFooter]="true" [dialogClass]="'modal-lg'">
+    <div class="app-modal-header">
+      <h5 class="modal-title">Ajout Marque</h5>
+      <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close" (click)="myLargeModalLabel.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <form (ngSubmit)="saveMarque()">
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" class="form-control" name="nom" placeholder="Creer Nom" [(ngModel)]="nom">
+            </div>
+            <div class="form-group">
+              <label for="pays">Pays</label>
+              <input type="text" class="form-control" name="pays" placeholder="Creer Pays" [(ngModel)]="pays">
+            </div>
+            <div class="form-group">
+              <label for="imageUrl">Image Url</label>
+              <input type="text" class="form-control" name="imageUrl" placeholder="Url d'image" [(ngModel)]="imageUrl">
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="myLargeModalLabel.hide()">Submit</button>
+          </form>
+        </div>
+        
+      </div>
+
+
+    </div>
+  </app-ui-modal>  
+  <app-ui-modal  #myLargeModalLabel1 [hideFooter]="true" [dialogClass]="'modal-lg'">
+    <div class="app-modal-header">
+      <h5 class="modal-title">Modifier Marque</h5>
+      <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close" (click)="myLargeModalLabel1.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <form (ngSubmit)="updateMarque()">
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input  type="text" class="form-control" name="nom" placeholder="Creer Nom"  [(ngModel)]="nom" ngModel="{{marqueUpdated?.nom}}">
+            </div>
+            <div class="form-group">
+              <label for="pays">Pays</label>
+              <input type="text" class="form-control" name="pays" placeholder="Creer Pays" [(ngModel)]="pays" ngModel="{{marqueUpdated?.pays}}">
+            </div>
+            <div class="form-group">
+              <label for="imageUrl">Image Url</label>
+              <input type="text" class="form-control" name="imageUrl" placeholder="Url d'image" [(ngModel)]="imageUrl" ngModel="{{marqueUpdated?.imageUrl}}">
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="myLargeModalLabel1.hide()">Submit</button>
+          </form>
+        </div>
+        
+      </div>
+
+
+    </div>
+  </app-ui-modal>  
+  <div class="col-xl-12">
+    <app-card customHeader="true" cardTitle="Marques" blockClass="table-border-style">
+      <div class="app-card-header">
+        <div class="row d-flex justify-content-end">
+          <button type="button" class="btn btn-primary" data-toggle="modal" (click)="myLargeModalLabel.show()" style="margin-right: 2%;">+</button>
+        </div>
+        <input type="search" (ngModelChange)="searchMarque(key.value)" #key="ngModel" ngModel
+        placeholder="Search" class="form-control" name="key" id="searchName" />  
+      
+      </div>
+      
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Marque</th>
+            <th>Pays</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let el of marqueList">
+            <td>{{el.id}}</td>
+            <td>{{el.nom}}</td>
+            <td>{{el.pays}}</td>
+            <td><div class="input-group-append">
+              <button class="btn btn-secondary" type="button" (click)="deleteMarque(el.id)">Delete</button>
+              <button class="btn btn-primary" type="button" data-toggle="modal" (click)="doEdit(el);myLargeModalLabel1.show()">Edit</button>
+            </div></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </app-card>
+  <!-- Extra small table start-->
+</div>

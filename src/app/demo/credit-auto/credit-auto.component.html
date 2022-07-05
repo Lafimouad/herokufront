@@ -1,0 +1,208 @@
+<div class="content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header">
+                      <h4 class="card-title">
+                        <p class="text-center h2 txt-color ">Note Credit de type Automobile</p>
+                        <div class="d-flex flex-row justify-content-center m-0">
+                          <hr class="col-8 m-1 align-self-center">
+                        </div>
+                      </h4>
+                  </div>
+                  <div class="card-body">
+                      <form (ngSubmit)="getDescription(f)" #f="ngForm">
+                          <div class="row">
+                              <div class="col-md-5 pr-1">
+                                  <div class="form-group">
+                                      <label>Type Credit</label>
+                                      <input ngModel name="type" type="text" class="form-control shadow-sm p-3 mb-3" disabled="" placeholder="{{ noteCredit.demandeCredit.type }}" value="{{ noteCredit.demandeCredit.type }}">
+                                  </div>
+                              </div>
+                              <div class="col-md-3 px-1">
+                                  <div class="form-group">
+                                      <label>Nom</label>
+                                      <input ngModel name="nom" type="text" class="form-control shadow-sm p-3 mb-3" disabled="" placeholder="{{ noteCredit.demandeCredit.client.nom }}" value="{{ noteCredit.demandeCredit.client.nom }}">
+                                  </div>
+                              </div>
+                              <div class="col-md-4 pl-1">
+                                  <div class="form-group">
+                                      <label for="exampleInputEmail1">Prenom</label>
+                                      <input ngModel name="prenom" type="text" class="form-control shadow-sm p-3 mb-3" disabled="" placeholder="{{ noteCredit.demandeCredit.client.prenom }}" value="{{ noteCredit.demandeCredit.client.prenom }}">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-4 pr-1">
+                                  <div class="form-group">
+                                      <label>Montant</label>
+                                      <input ngModel name="montant" type="text" class="form-control shadow-sm p-3 mb-" disabled="" placeholder="{{ noteCredit.demandeCredit.montant }}" value="{{ noteCredit.demandeCredit.montant }}">
+                                  </div>
+                              </div>
+                              <div class="col-md-4 pl-1">
+                                  <div class="form-group">
+                                      <label>Auto Financement</label>
+                                      <input ngModel name="autoFinancement" type="text" class="form-control shadow-sm p-3 mb-" disabled="" placeholder="{{noteCredit.demandeCredit.autoFinancement }}" value="{{ noteCredit.demandeCredit.autoFinancement }}">
+                                  </div>
+                              </div>
+                              <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                    <label>Durée de Remboursement (par Mois)</label>
+                                    <input ngModel name="dureeRemboursement" type="text" class="form-control shadow-sm p-3 mb-" disabled="" placeholder="{{ noteCredit.demandeCredit.dureeRemboursement }}" value="{{ noteCredit.demandeCredit.dureeRemboursement }}">
+                                </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                              <div class="col-md-4 pr-1">
+                                  <div class="form-group">
+                                      <label>Prix Voiture (Dinar)</label>
+                                      <input ngModel name="prixVoiture" type="text" class="form-control shadow-sm p-3 mb-" disabled="" placeholder="{{ noteCredit.demandeCredit.prixVoiture }}" value="{{ noteCredit.demandeCredit.prixVoiture }}">
+                                  </div>
+                              </div>
+                              <div class="col-md-4 px-1">
+                                  <div class="form-group">
+                                      <label>Age Voiture(par Mois)</label>
+                                      <input ngModel name="ageVoiture" type="text" class="form-control shadow-sm p-3 mb-" disabled="" placeholder="{{ noteCredit.demandeCredit.ageVoiture }}" value="{{ noteCredit.demandeCredit.ageVoiture }}">
+                                  </div>
+                              </div>
+                              <div class="col-md-4 pl-1">
+                                  <div class="form-group">
+                                      <label>Puissance Fiscal</label>
+                                      <input ngModel name="puissanceFiscal" type="number" class="form-control shadow-sm p-3 mb-" disabled="" placeholder="{{ noteCredit.demandeCredit.puissanceFiscale }}">
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="d-flex  justify-content-center">
+                            <div class="col-5 align-self-center">
+                              <button type="button" class="btn btn-primary" data-toggle="modal" (click)="myLargeModalLabel.show()"> Consulter document Domiciliation de Salaire </button>
+                            </div>
+                          </div>
+
+                          <!-- <div *ngIf="role =='DirecteurZone'" class="row"> -->
+                
+
+                          <!-- radio input -->
+                          <!-- <div class="row">
+                            <div class="col-md-4">
+                              <div class="from-group">
+                                <label >Statuts de cette Demande Credit </label>
+                                <br>
+                                <br>
+                                  <div>
+                                    <div class="radio">
+                                      <label class="form-check-label">
+                                          <input ngModel  class="form-check-input" type="radio" name="statut" id="exampleRadios1" value="true" required>
+                                          <span class="form-check-sign"></span>
+                                         Demande Validée
+                                      </label>
+                                    </div>
+
+                                    <div class="radio">
+                                      <label class="form-check-label">
+                                          <input ngModel class="form-check-input" type="radio" name="statut" id="exampleRadios2" value="false" required >
+                                          <span class="form-check-sign"></span>
+                                          Demande non Validée
+                                      </label>
+                                    </div>
+                                  </div>
+
+                             </div>
+                            </div>
+                          </div> -->
+                          <!-- radio end -->
+                          <div class="col-md-6">
+                            <div *ngIf="niveau > 0" class="row">
+                              <div class="col-md-12">
+                                  <div class="form-group">
+                                      <label><h5 class="mt-5">Avis de chef d'agence </h5></label>
+                                      <input name="avisChefAgence"  rows="4" cols="80" disabled="" class="form-control" placeholder="{{ listCommentaires[0].commentaire }}"/>
+  
+                                  </div>
+                              </div>
+                            </div>
+  
+                            <!-- <div *ngIf="role =='ComitéCentrale'" class="row"> -->
+                            <div *ngIf="niveau > 1" class="row">
+                              <div class="col-md-12">
+                                  <div class="form-group">
+                                      <label><h5 class="mt-5">Avis de Directeur de Zone</h5> </label>
+                                      <input name="avisDirecteurZone"  rows="4" cols="80" disabled="" class="form-control" placeholder="{{ listCommentaires[1].commentaire }}" />
+  
+                                  </div>
+                              </div>
+                            </div>
+  
+                            <!-- <div *ngIf="role =='ComitéSup'" class="row"> -->
+                            <div *ngIf="niveau > 2" class="row">
+                              <div class="col-md-12">
+                                  <div class="form-group">
+                                      <label><h5 class="mt-5">Avis de Comité Sup</h5></label>
+                                      <input name="avisComitéComitéSup"  rows="4" cols="80" disabled="" class="form-control" placeholder="{{ listCommentaires[2].commentaire }}" />
+  
+                                  </div>
+                              </div>
+                            </div>
+  
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label><h5 class="mt-5">Description</h5></label>
+                                        <i class="nc-icon nc-icon nc-single-copy-04 m-3"></i>
+                                        <input *ngIf="etat == 'ajout'" ngModel name="description" rows="8" cols="80" class="form-control" placeholder="Ajouter votre description à propos cette demande de crédit" required/>
+                                        <input *ngIf="etat == 'edit'" ngModel name="description" rows="8" cols="80" class="form-control"  [(ngModel)]="listCommentaires[niveau].commentaire" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="mt-5">Statuts de cette Demande Credit</h5>
+                            <div class="custom-control custom-radio">
+                              <input  ngModel type="radio" id="customRadio1" name="statut" id="exampleRadios1" value="true" required class="custom-control-input">
+                              <label class="custom-control-label" for="customRadio1">Demande Validée</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                              <input ngModel type="radio" id="customRadio2" name="statut" id="exampleRadios2" value="false" required class="custom-control-input">
+                              <label class="custom-control-label" for="customRadio2">Demande non Validée</label>
+                            </div>
+                          <div class="clearfix"></div>
+
+                            
+                          </div>
+                          <div class="text-right">
+                          <div class="col-md-12"><button type="submit" class="btn btn-primary" (click)="showNotif()" [disabled]="f.invalid" >Traiter Demande</button>
+                          <div class="clearfix"></div>
+                        </div>
+                        </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<app-ui-modal #myLargeModalLabel [hideFooter]="false" [dialogClass]="'modal-lg'">
+  <div class="app-modal-header">
+    <h5 class="modal-title">Document</h5>
+    <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close" (click)="myLargeModalLabel.hide()"><span aria-hidden="true">&times;</span></button>
+  </div>
+    <div class="app-modal-body">
+      <img src="http://20.67.133.33:8080/getfile/{{ noteCredit.demandeCredit?.id }}" class="card-img modal-lg img-thumbnail" alt="image"  height="800" >
+
+    </div>
+     <div class="app-modal-footer">
+      <a class="btn-primary" href="http://20.67.133.33:8080/getfile/{{ noteCredit.demandeCredit?.id }}">Telechager</a>
+    </div>
+</app-ui-modal>

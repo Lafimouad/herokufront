@@ -1,0 +1,199 @@
+<div class="row">
+  <!-- site Analytics card start -->
+  <div class="col-xl-7 col-sm-12">
+    <div class="row">
+      <div class="col-sm-6">
+        <app-card [hidHeader]="true" cardClass="support-bar overflow-hidden" blockClass="p-0" [isCardFooter]="true" footerClass="bg-primary text-white">
+          <div class="p-20 pb-0">
+            <h2 class="m-0">{{creditList?.length}}</h2>
+            <span class="text-c-blue">Demande de credit</span>
+            <p class="mb-3 mt-3">Nombre total de demandes de credit</p>
+          </div>
+          <app-apex-chart chartID="support-chart-1" [chartConfig]="this.supportChartData1"></app-apex-chart>
+          <div class="app-card-footer">
+            <div class="row text-center">
+              <div class="col">
+                <h4 class="m-0 text-white">{{acceptedCreditList?.length}}</h4>
+                <span>Accepté</span>
+              </div>
+              <div class="col">
+                <h4 class="m-0 text-white">{{waitingCreditList?.length}}</h4>
+                <span>Attendre</span>
+              </div>
+              <div class="col">
+                <h4 class="m-0 text-white">{{refusedCreditList?.length}}</h4>
+                <span>Refusé</span>
+              </div>
+            </div>
+          </div>
+        </app-card>
+      </div>
+      <div class="col-sm-6">
+        <app-card [hidHeader]="true" cardClass="support-bar overflow-hidden" blockClass="p-0" [isCardFooter]="true" footerClass="bg-c-yellow text-white">
+          <div class="p-20 pb-0">
+            <h2 class="m-0">{{waitingCreditList?.length}}</h2>
+            <span class="text-c-yellow">Demande de credit</span>
+            <p class="mb-3 mt-3">Nombre total de demandes de credit en attente.</p>
+          </div>
+          <app-apex-chart chartID="support-chart-2" [chartConfig]="this.supportChartData2"></app-apex-chart>
+          <div class="app-card-footer">
+            <div class="row text-center">
+              <div class="col">
+                <h4 class="m-0 text-white"></h4>
+                <span>En attend</span>
+              </div>
+              <!-- <div class="col">
+                <h4 class="m-0 text-white">5</h4>
+                <span>Running</span>
+              </div> -->
+              <div class="col">
+                <h4 class="m-0 text-white"></h4>
+                <span>Autres</span>
+              </div>
+            </div>
+          </div>
+        </app-card>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-5 col-sm-12">
+    <div class="row">
+      <div class="col-md-6">
+        <app-card [hidHeader]="true" [isCardFooter]="true" footerClass="bg-c-yellow">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h4 class="text-c-yellow">{{carNumber}}</h4>
+              <h6 class="text-muted m-b-0">Voitures</h6>
+            </div>
+            <div class="col-4 text-right">
+              <i class="feather icon-bar-chart-2 f-28"></i>
+            </div>
+          </div>
+          <div class="app-card-footer">
+            <div class="row align-items-center">
+              <div class="col-9">
+                <p class="text-white m-b-0">% changement</p>
+              </div>
+              <div class="col-3 text-right">
+                <i class="feather icon-trending-up text-white f-16"></i>
+              </div>
+            </div>
+          </div>
+        </app-card>
+      </div>
+      <div class="col-md-6">
+        <app-card [hidHeader]="true" [isCardFooter]="true" footerClass="bg-c-green">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h4 class="text-c-green"></h4>
+              <h6 class="text-muted m-b-0">Vues de voiture</h6>
+            </div>
+            <div class="col-4 text-right">
+              <i class="feather icon-eye f-28"></i>
+            </div>
+          </div>
+          <div class="app-card-footer">
+            <div class="row align-items-center">
+              <div class="col-9">
+                <p class="text-white m-b-0">% changement</p>
+              </div>
+              <div class="col-3 text-right">
+                <i class="feather icon-trending-up text-white f-16"></i>
+              </div>
+            </div>
+          </div>
+        </app-card>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <app-card [hidHeader]="true" [isCardFooter]="true" footerClass="bg-c-red">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h4 class="text-c-red">{{acceptedCreditList?.length}}</h4>
+              <h6 class="text-muted m-b-0">Accepté</h6>
+            </div>
+            <div class="col-4 text-right">
+              <i class="feather icon-thumbs-up f-28"></i>
+            </div>
+          </div>
+          <div class="app-card-footer">
+            <div class="row align-items-center">
+              <div class="col-9">
+                <p class="text-white m-b-0">% changement</p>
+              </div>
+              <div class="col-3 text-right">
+                <i class="feather icon-trending-up text-white f-16"></i>
+              </div>
+            </div>
+          </div>
+        </app-card>
+      </div>
+      <div class="col-md-6">
+        <app-card [hidHeader]="true" [isCardFooter]="true" footerClass="bg-c-blue">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h4 class="text-c-blue"></h4>
+              <h6 class="text-muted m-b-0">Téléchargements</h6>
+            </div>
+            <div class="col-4 text-right">
+              <i class="feather icon-download f-28"></i>
+            </div>
+          </div>
+          <div class="app-card-footer">
+            <div class="row align-items-center">
+              <div class="col-9">
+                <p class="text-white m-b-0">% changement</p>
+              </div>
+              <div class="col-3 text-right">
+                <i class="feather icon-trending-up text-white f-16"></i>
+              </div>
+            </div>
+          </div>
+        </app-card>
+      </div>
+    </div>
+  </div>
+  <!-- seo start -->
+  <div class="col-xl-4 col-md-12">
+    <app-card [hidHeader]="true">
+      <div class="row align-items-center">
+        <div class="col-6">
+          <h3>21,002 dt</h3>
+          <h6 class="text-muted m-b-0">Gains<i class="fa fa-caret-down text-c-red m-l-10"></i></h6>
+        </div>
+        <div class="col-6">
+          <app-apex-chart chartID="seo-chart-1" [chartConfig]="this.seoChartData1"></app-apex-chart>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-xl-4 col-md-6">
+    <app-card [hidHeader]="true">
+      <div class="row align-items-center">
+        <div class="col-6">
+          <h3>35.54%</h3>
+          <h6 class="text-muted m-b-0">Taux du gains<i class="fa fa-caret-up text-c-green m-l-10"></i></h6>
+        </div>
+        <div class="col-6">
+          <app-apex-chart chartID="seo-chart-2" [chartConfig]="this.seoChartData2"></app-apex-chart>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-xl-4 col-md-6">
+    <app-card [hidHeader]="true">
+      <div class="row align-items-center">
+        <div class="col-6">
+          <h3>+{{carNumber}}</h3>
+          <h6 class="text-muted m-b-0">Voitures<i class="fa fa-caret-down text-c-red m-l-10"></i></h6>
+        </div>
+        <div class="col-6">
+          <app-apex-chart chartID="seo-chart-3" [chartConfig]="this.seoChartData3"></app-apex-chart>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  
+
+</div>

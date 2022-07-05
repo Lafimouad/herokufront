@@ -1,0 +1,319 @@
+<div class="content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card strpied-tabled-with-hover" *ngIf="!tableStatutCredit()">
+                <div class="card-header ">
+                  <div class="m-1  alert alert-primary d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="50" height="50" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+                    <p class="h1 text-center">
+                      Il n'a y pas des demandes à traiter pour l'instant
+                    </p>
+
+                  </div>
+                    <!-- <h4 class="card-title">Il n'a y pas des demandes à traiter pour l'instant</h4> -->
+                </div>
+                <br>
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                  <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                  </symbol>
+                  <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                  </symbol>
+                  <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                  </symbol>
+                </svg>
+
+
+
+
+              </div>
+              <!-- *ngIf="tableStatutCredit()" -->
+              <!-- <div *ngIf="editChef"> -->
+                <div class="card strpied-tabled-with-hover "  *ngIf="tableStatutCredit()" >
+                  <div class="card-header text-left ml-3">
+                      <h4 class="card-title txt-color mt-3">Liste des demandes de crédit à traiter</h4>
+                      <p class="card-category">Vous trouvez ci-dessous la liste des demandes</p>
+                      <!-- <hr class="col-4 text-center"> -->
+                  </div>
+
+
+                  <div class="card-body table-full-width table-responsive text-right ml-4 pt-1" >
+                    <div class="col-md-4 pl-1 text-left">
+
+                      <!-- <div class="input-group">
+                        <input class="form-control" type="search" [(ngModel)]="searchText" placeholder="Search text">
+                          <div class="input-group-append">
+                            <button class="btn-primary rounded "><i class="nc-icon nc-icon nc-zoom-split"></i></button>
+                          </div>
+
+                      </div> -->
+
+                      <div class="input-group p-2">
+                        <input type="search" class="form-control me-2 rounded-right "  type="search" (ngModelChange)="search1(key.value)" #key="ngModel" ngModel
+                      name="key" id="searchName"  placeholder="Recherche">
+                        <span class="input-group-text" id="validationTooltipUsernamePrepend"><i class="feather icon-filter"></i></span>
+
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="card-body table-full-width table-responsive mx-3">
+
+                    <div *ngIf="demandeNotFound(creditTable.rows.length)">
+                      <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </symbol>
+                        <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                        </symbol>
+                      </svg>
+
+                      <div class="alert alert-primary d-flex-row " role="alert">
+                        <div class="d-flex justify-content-center">
+                          <svg class="bi flex-shrink-0 me-2 " width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+                          <h3 class="alert-heading me-2 mb-2">Demande Introuvable !</h3>
+                        </div>
+
+                        <p class="text-center">Cette demande de credit n'existe pas dans ce tableau</p>
+                        <hr>
+                        <p class="mb-0 text-center">Essayer de trouver une autre demande de credit </p>
+                      </div>
+                    </div>
+
+                      <table #creditTable class="table table-striped  table-hover text-center rounded-3 shadow p-3 mb-5 bg-body" [hidden]="demandeNotFound(creditTable.rows.length)">
+                          <thead class="thead-light text-center color-th bg-gradient" align="center">
+                              <tr>
+                              <th class="color text-center">ID</th>
+                              <th class="color text-center">Name</th>
+                              <th class="color text-center">Prenom</th>
+                              <th class="color">Montant Credit</th>
+                              <th class="color text-center">Type</th>
+                              <th class="color" >Remboursement Mensuel </th>
+                              <th class="color">AutoFinancement</th>
+                              <th class="color"> Détails</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <!-- (click)="onCreditDetails(credit)" -->
+                            <!-- [routerLink]="['/credit-detail/'+credit.id]" -->
+                            <!-- (click)="redirectToCreditDetails(credit.type)" -->
+                            <!-- [type]="credit.demandeCredit.type" -->
+                            <!-- (click)="redirectToCreditDetails(credit.demandeCredit.type, credit.id)" -->
+
+                              <tr  class="align-middle " *ngFor="let credit of credits;  let i=index  "   >
+                    <!-- <p *ngIf="credit==null"> ezfzefze</p>-->
+
+                                  <td class="align-middle">{{ i+1 }}</td>
+                                  <td class="align-middle">{{ (credit.demandeCredit.client.nom) }}</td>
+                                  <td class="align-middle">{{ credit.demandeCredit.client.prenom }}</td>
+                                  <td class="align-middle">{{ credit.demandeCredit.montant }}DT</td>
+                                  <td class="align-middle fw-bolder">{{ credit.demandeCredit.type | uppercase}}</td>
+                                  <td class="align-middle">{{ credit.demandeCredit.dureeRemboursement }}</td>
+                                  <td class="align-middle">{{ credit.demandeCredit.autoFinancement }}</td>
+                                 
+                                <td class="container-fluid" ><button type="button" rel="tooltip"  class="btn1" data-original-title="Edit Task" (click)="updateListNotif(credit.id)" (click)="redirectToCreditDetails(credit.demandeCredit.type, credit.id,'ajout')" >
+                                  <i class="feather icon-info" style="color:#5499C7"></i>
+                              </button></td>
+                              </tr>
+
+                          </tbody>
+
+                       </table>
+                       
+                  </div>
+                </div>
+                
+              <!-- </div> -->
+
+              <!-- directeur de zone -->
+              <!-- <div *ngIf="editDirecteurZone">
+                <div class="card strpied-tabled-with-hover" *ngIf="tableStatutCredit()"  >
+                  <div class="card-header ">
+                      <h4 class="card-title">Liste des Demande de Crédit à Triater</h4>
+                      <p class="card-category">Here is a subtitle for this table</p>
+                  </div>
+                  <div class="card-body table-full-width table-responsive" >
+                      <table class="table table-hover table-striped">
+                          <thead>
+                              <tr>
+                              <th>ID</th>
+                              <th>Name</th>
+                              <th>Prenom</th>
+                              <th>Montant Credit</th>
+                              <th>Type</th>
+                              <th>Duree Remboursement (par mois)</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                             (click)="onCreditDetails(credit)" -->
+                            <!-- [routerLink]="['/credit-detail/'+credit.id]" -->
+                            <!-- (click)="redirectToCreditDetails(credit.type)" -->
+                            <!-- [type]="credit.demandeCredit.type" --
+                              <tr  class="align-middle" *ngFor="let demande of demandesTraite ;  let i=index"  (click)="redirectToCreditDetails(demande.demandeCredit.type, demande.id)"   >
+
+                                  <td class="align-middle" *ngIf="demande.statut=='Validé'">{{ i+1 }}</td>
+                                  <td class="align-middle" *ngIf="demande.statut=='Validé'">{{ demande.nom }}</td>
+                                  <td class="align-middle" *ngIf="demande.statut=='Validé'">{{ demande.prenom }}</td>
+                                  <td class="align-middle" *ngIf="demande.statut=='Validé'">{{ demande.demandeCredit.montant }}DT</td>
+                                  <td class="align-middle" *ngIf="demande.statut=='Validé'">{{ demande.demandeCredit.type }}</td>
+                                  <td class="align-middle" *ngIf="demande.statut=='Validé'">{{ demande.demandeCredit.dureeRemboursement }}</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+          </div>-->
+          <div class="col-md-12 px-0" *ngIf="tableStatutDemandeTraite()">
+
+            <!-- chef d'agence -->
+            <!-- <div *ngIf="editChef"> -->
+
+              <!-- <div class="card card-plain table-plain-bg text-left ml-3"> -->
+              <div class="card strpied-tabled-with-hover">
+                <div class="card-header ">
+                    <h4 class="card-title txt-color mt-3 ml-3">Liste des demandes de crédit déjà traitées</h4>
+                    <p class="card-category ml-3">Vous trouvez ci-dessous la liste des demandes</p>
+                </div>
+
+                <div class="card-body table-full-width table-responsive text-right ml-4 pt-1" >
+                  <div class="col-md-4 pl-1 text-left ">
+                    <!-- <input class="form-control me-2 " type="search" [(ngModel)]="searchText2" placeholder="Search text"> -->
+
+                    <div class="input-group p-2">
+                      <input type="search" class="form-control me-2 rounded-right "  [(ngModel)]="searchText2" placeholder="Recherche">
+                      <span class="input-group-text" ><i class="feather icon-filter"></i></span>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-body table-full-width table-responsive  mx-3">
+
+
+                  <div *ngIf="demandeNotFound(demandeTable.rows.length)">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                      <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                      </symbol>
+                      <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                      </symbol>
+                    </svg>
+
+                    <div class="alert alert-primary d-flex-row " role="alert">
+                      <div class="d-flex justify-content-center">
+                        <svg class="bi flex-shrink-0 me-2 " width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+                        <h3 class="alert-heading me-2 mb-2">Demande Introuvable !</h3>
+                      </div>
+
+                      <p class="text-center">Cette demande de credit n'existe pas dans ce tableau</p>
+                      <hr>
+                      <p class="mb-0 text-center">Essayer de trouver une autre demande de credit </p>
+                    </div>
+                  </div>
+
+                  <!-- <div class="callout-info border-left-color border rounded">...</div> -->
+                    <table #demandeTable class="table table-striped  table-hover text-center rounded-3 shadow p-3 mb-5 bg-body" [hidden]="demandeNotFound(demandeTable.rows.length)">
+                        <thead class="thead-light color-th bg-gradient text-white" >
+                            <tr><th class="color">ID</th>
+                            <th class="color">Name</th>
+                            <th class="color">Prenom</th>
+                            <th class="color">Montant Credit</th>
+                            <th class="color">Type</th>
+                            <th class="color">Remboursement Mensuel</th>
+                            <th class="color">Statut</th>
+                            <th class="color">Modifier</th>
+                        </tr></thead>
+                        <tbody>
+                          <!-- {{ logthis(demandeTable.rows) }}
+                              {{ logthis(demandeTable.rows.length) }} -->
+                          <!-- (click)="redirectToCreditDetails(demande.demandeCredit.type, demande.id)" -->
+
+                            <tr *ngFor="let demande of demandesTraite ; let i = index " class="P" >
+                              <!-- {{ logthis(demandeTable.rows) }}
+                              {{ logthis(demandeTable.rows.length) }} -->
+
+                                <td>{{ i+1 }}</td>
+                                <td>{{ demande.demandeCredit.client.nom }}</td>
+                                <td>{{ demande.demandeCredit.client.prenom }}</td>
+                                <td>{{ demande.demandeCredit.montant }}DT</td>
+                                <td class="fw-bolder ">{{ demande.demandeCredit.type  | uppercase }}</td>
+                                <td>{{ demande.demandeCredit.dureeRemboursement }}</td>
+
+
+                                <td><span *ngIf="demande.status" class="badge bg-success">Validée</span>
+                                <span *ngIf="!demande.status" class="badge bg-danger">Non Validée</span></td>
+                                <td ><button type="button" rel="tooltip"  class="btn1" data-original-title="Edit Task" (click)="redirectToCreditDetails(demande.demandeCredit.type, demande.id,'edit')"  style="padding: top 0;">
+                                <i class="feather icon-edit" style="color: #5499C7;"></i>
+                              </button></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+              </div>
+            <!-- </div> -->
+            <!-- directeur de zone  -->
+
+            <!-- <div *ngIf="!tableStatutDemandeTraite()"> -->
+              <!-- <div *ngIf="editDirecteurZone">
+                <div class="card card-plain table-plain-bg">
+                  <div class="card-header ">
+                      <h4 class="card-title">Liste des Demande de Crédit Déjà Traité</h4>
+                      <p class="card-category">Here is a subtitle for this table</p>
+                  </div>
+                  <div class="card-body table-full-width table-responsive">
+                      <table class="table table-hover ">
+                          <thead>
+                              <tr><th>ID</th>
+                              <th>Name</th>
+                              <th>Prenom</th>
+                              <th>Montant Credit</th>
+                              <th>Type</th>
+                              <th>Duree Remboursement (par mois)</th>
+                              <th>Statut</th>
+                          </tr></thead>
+                          <tbody>
+                              <tr *ngFor="let demandeDirecteur of demandesTdirecteurZone ; let i = index"  >
+                                  <td>{{ i+1 }}</td>
+                                  <td>{{ demandeDirecteur.demande.nom }}</td>
+                                  <td>{{ demandeDirecteur.demande.prenom }}</td>
+                                  <td>{{ demandeDirecteur.demande.demandeCredit.montant }}DT</td>
+                                  <td>{{ demandeDirecteur.demande.demandeCredit.type }}</td>
+                                  <td>{{ demandeDirecteur.demande.demandeCredit.dureeRemboursement }}</td>
+
+                                  <td><span *ngIf="demandeDirecteur.statut === 'Validé'" class="badge bg-success">Validé</span>
+                                  <span *ngIf="demandeDirecteur.statut === 'Non validé'" class="badge bg-danger">Non Validé</span></td>
+                              </tr>
+
+                          </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div> -->
+            <!-- </div> -->
+
+
+
+            <!-- <button type="button" class="btn btn-primary position-relative">
+              Mails <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">+99 <span class="visually-hidden">unread messages</span></span>
+            </button> -->
+
+
+
+
+          </div>
+      </div>
+  </div>
+
+</div>
+
+
